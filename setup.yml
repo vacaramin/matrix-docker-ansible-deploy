@@ -1,6 +1,6 @@
 ---
 - name: "Set up a Matrix server"
-  hosts: "{{ target if target is defined else 'matrix_servers' }}"
+  hosts: "localhost"
   become: true
 
   roles:

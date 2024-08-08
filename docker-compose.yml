@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  homeserver:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: ansible_container
+    environment:
+      - DEBIAN_FRONTEND=noninteractive
+    volumes:
+      - ./playbooks:/workspace/playbooks
+      - ./inventory:/workspace/inventory
+      - ./ansible.cfg:/workspace/ansible.cfg
+      - ./requirements.yml:/workspace/requirements.yml
+      - ./setup.yml:/workspace/setup.yml
+    entrypoint: /bin/bash
+    command: -c "ansible-playbook /workspace/setup.yml"
